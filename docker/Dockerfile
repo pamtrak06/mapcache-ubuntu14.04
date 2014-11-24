@@ -14,7 +14,7 @@ FROM ubuntu:quantal
 MAINTAINER Homme Zwaagstra <hrz@geodata.soton.ac.uk>
 
 # Ensure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu quantal main universe" > /etc/apt/sources.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu vivid main universe" > /etc/apt/sources.list
 RUN apt-get update
 
 # Install Node.js
