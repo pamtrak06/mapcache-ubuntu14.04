@@ -16,9 +16,9 @@ RUN echo "deb http://fr.archive.ubuntu.com/ubuntu lucid main universe" > /etc/ap
 RUN apt-get update
 
 # Install Node.js
+RUN apt-get update
 RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
 RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get update
 RUN apt-get install -y nodejs
 
 # Install mapcache dependencies provided by Ubuntu repositories
