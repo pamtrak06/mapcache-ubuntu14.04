@@ -16,10 +16,10 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu 14.10 main universe" > /etc/apt/s
 RUN apt-get update
 
 # Install Node.js
-#RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
-#RUN add-apt-repository -y ppa:chris-lea/node.js
-#RUN apt-get update
-#RUN apt-get install -y nodejs
+RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
+RUN add-apt-repository -y ppa:chris-lea/node.js
+RUN apt-get update
+RUN apt-get install -y nodejs
 
 # Install mapcache dependencies provided by Ubuntu repositories
 #RUN apt-get install -y git \
