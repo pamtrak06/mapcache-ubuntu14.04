@@ -9,11 +9,11 @@
 
 FROM ubuntu:14.10
 
-#MAINTAINER pamtrak06 <pamtrak06>
+MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Ensure the package repository is up to date
-#RUN echo "deb http://archive.ubuntu.com/ubuntu vivid main universe" > /etc/apt/sources.list
-#RUN apt-get update
+RUN echo "deb http://archive.ubuntu.com/ubuntu 14.10 main universe" > /etc/apt/sources.list
+RUN apt-get update
 
 # Install Node.js
 #RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
