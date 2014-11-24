@@ -7,7 +7,7 @@
 # deriving production ready images from.
 #
 
-FROM ubuntu:14.10
+FROM ubuntu:lucid
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
