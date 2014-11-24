@@ -7,7 +7,7 @@
 # deriving production ready images from.
 #
 
-FROM ubuntu:vivid
+FROM ubuntu:14.10
 
 #MAINTAINER pamtrak06 <pamtrak06>
 
