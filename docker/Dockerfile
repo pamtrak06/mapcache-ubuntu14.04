@@ -1,3 +1,4 @@
+# Model from https://github.com/geo-data/node-mapcache
 #
 # This creates an Ubuntu derived base image that installs a recent
 # version of Node.js as well as the latest repository checkouts of
