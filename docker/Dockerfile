@@ -7,12 +7,12 @@
 # deriving production ready images from.
 #
 
-FROM ubuntu:12.04
+FROM ubuntu:14.10
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Ensure the package repository is up to date
-RUN echo "deb http://archive.ubuntu.com/ubuntu 12.04 main universe" > /etc/apt/sources.list
+RUN echo "deb http://fr.archive.ubuntu.com/ubuntu lucid main universe" > /etc/apt/sources.list
 RUN apt-get update
 
 # Install Node.js
