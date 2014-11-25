@@ -13,56 +13,15 @@ FROM ubuntu:utopic
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Ensure the package repository is up to date
-RUN echo "deb http://fr.archive.ubuntu.com/ubuntu lucid main universe" > /etc/apt/sources.list
-RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu hardy main" >> /etc/apt/sources.list
+RUN echo "deb http://fr.archive.ubuntu.com/ubuntu utopic main universe" > /etc/apt/sources.list
+RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu utopic main universe" >> /etc/apt/sources.list
 RUN apt-get update
 
 # Install Node.js
-RUN apt-get update
 RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
-RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get install -y nodejs
+#RUN add-apt-repository -y ppa:chris-lea/node.js
+#RUN apt-get install -y nodejs
 
-
-# libapr1-dev dependencies
-RUN apt-get install -y uuid-dev
-# libaprutil1-dev dependencies
-RUN apt-get install -y libldap2-dev \
-    libexpat1-dev \
-    libpq-dev \
-    libmysqlclient-dev
-# libcurl4-gnutls-dev dependencies
-RUN apt-get install -y libcurl3-gnutls \
-    libc6-dev \
-    libc-dev \
-    libgnutls-dev \
-    zlib1g-dev \
-    libkrb5-dev \
-    hurd \
-    libldap2-dev
-# libgdal1-dev dependencies
-RUN apt-get install -y libgdal1-1.6.0 \
-    libc6-dev \
-    libhdf4-alt-dev \
-    libpq-dev but \
-    libxerces-c2-dev \
-    libmysqlclient-dev \
-    libhdf5-serial-dev
-# libjpeg62-dev dependencies
-RUN apt-get install -y libc-dev
-# libpcre3-dev dependencies
-RUN apt-get install -y libc6-dev \
-    libpcre3
-#libpng12-dev dependencies
-RUN apt-get install -y libpng12-0 \
-    zlib1g-dev
-# libsqlite3-dev dependencies
-RUN apt-get install -y libsqlite3-0 \
-    libc6-dev
-# libtiff4-dev dependencies
-RUN apt-get install -y libc6-dev \
-    libc-dev \
-    zlib1g-dev
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
     libaprutil1-dev \
@@ -76,7 +35,7 @@ RUN apt-get install -y git \
     libgeos-dev \
     libsqlite3-dev \
     libdb-dev \
-    libtiff4-dev
+    libtiff5-dev
 
 # Install Mapcache itself
 RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
@@ -87,9 +46,17 @@ RUN mkdir /usr/local/src/mapcache/build && \
     make install
 
 # Install Node Mapcache. This installs to `/node_modules` so will always be found
-RUN git clone https://github.com/geo-data/node-mapcache/ /usr/local/src/node-mapcache
-RUN npm config set mapcache:build_dir /usr/local/src/mapcache/build && \
-    npm install /usr/local/src/node-mapcache
+#RUN git clone https://github.com/geo-data/node-mapcache/ /usr/local/src/node-mapcache
+
+RUN apt-get install -y npm
+#RUN npm config set mapcache:build_dir /usr/local/src/mapcache/build && \
+#    npm install /usr/local/src/node-mapcache
 
 # Run the Node Mapcache tests by default
-CMD npm test mapcache
+#CMD npm test mapcache
+
+# Install Apache
+RUN apt-get install -y apache2
+
+# Install Firefox
+RUN apt-get install -y firefox
