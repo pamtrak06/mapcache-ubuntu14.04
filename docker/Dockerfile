@@ -27,11 +27,11 @@ RUN apt-get install -y git \
     libaprutil1-dev \
     libapr1-dev \
     libpng12-dev \
-    libjpeg-dev \
+    libjpeg62-dev \
     libcurl4-gnutls-dev \
     libpcre3-dev \
     libpixman-1-dev \
-    libgdal-dev \
+    libgdal1-dev \
     libgeos-dev \
     libsqlite3-dev \
     libdb-dev \
