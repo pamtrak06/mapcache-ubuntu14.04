@@ -8,7 +8,7 @@
 # deriving production ready images from.
 #
 
-FROM ubuntu:lucid
+FROM ubuntu:utopic
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
