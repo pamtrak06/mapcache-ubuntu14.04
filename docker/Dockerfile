@@ -48,16 +48,21 @@ RUN apt-get install -y libgdal1-1.6.0 \
     libxerces-c2-dev \
     libmysqlclient-dev \
     libhdf5-serial-dev
-#libjpeg62-dev : Depends: libc-dev
-#libpcre3-dev : Depends: libc6-dev but it is not going to be installed
-#               Depends: libpcre3 (= 7.8-3build1) but 1:8.35-3ubuntu1 is to be installed
-#libpng12-dev : Depends: libpng12-0 (= 1.2.42-1ubuntu2) but 1.2.51-0ubuntu3 is to be installed
-#               Depends: zlib1g-dev but it is not going to be installed
-#libsqlite3-dev : Depends: libsqlite3-0 (= 3.6.22-1) but 3.8.6-1 is to be installed
-#                 Depends: libc6-dev but it is not going to be installed
-#libtiff4-dev : Depends: libc6-dev but it is not going to be installed or
-#                       libc-dev
-#              Depends: zlib1g-dev but it is not going to be installed
+# libjpeg62-dev dependencies
+RUN apt-get install -y libc-dev
+# libpcre3-dev dependencies
+RUN apt-get install -y libc6-dev \
+    libpcre3
+#libpng12-dev dependencies
+RUN apt-get install -y libpng12-0 \
+    zlib1g-dev
+# libsqlite3-dev dependencies
+RUN apt-get install -y libsqlite3-0 \
+    libc6-dev
+# libtiff4-dev dependencies
+RUN apt-get install -y libc6-dev \
+    libc-dev \
+    zlib1g-dev
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
     libaprutil1-dev \
