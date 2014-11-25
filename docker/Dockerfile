@@ -14,6 +14,7 @@ MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Ensure the package repository is up to date
 RUN echo "deb http://fr.archive.ubuntu.com/ubuntu lucid main universe" > /etc/apt/sources.list
+RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu hardy main" >> /etc/apt/sources.list
 RUN apt-get update
 
 # Install Node.js
@@ -22,6 +23,41 @@ RUN apt-get install -y software-properties-common python-software-properties pyt
 RUN add-apt-repository -y ppa:chris-lea/node.js
 RUN apt-get install -y nodejs
 
+
+# libapr1-dev dependencies
+RUN apt-get install -y uuid-dev
+# libaprutil1-dev dependencies
+RUN apt-get install -y libldap2-dev \
+    libexpat1-dev \
+    libpq-dev \
+    libmysqlclient-dev
+# libcurl4-gnutls-dev dependencies
+RUN apt-get install -y libcurl3-gnutls \
+    libc6-dev \
+    libc-dev \
+    libgnutls-dev \
+    zlib1g-dev \
+    libkrb5-dev \
+    hurd \
+    libldap2-dev
+# libgdal1-dev dependencies
+RUN apt-get install -y libgdal1-1.6.0 \
+    libc6-dev \
+    libhdf4-alt-dev \
+    libpq-dev but \
+    libxerces-c2-dev \
+    libmysqlclient-dev \
+    libhdf5-serial-dev
+#libjpeg62-dev : Depends: libc-dev
+#libpcre3-dev : Depends: libc6-dev but it is not going to be installed
+#               Depends: libpcre3 (= 7.8-3build1) but 1:8.35-3ubuntu1 is to be installed
+#libpng12-dev : Depends: libpng12-0 (= 1.2.42-1ubuntu2) but 1.2.51-0ubuntu3 is to be installed
+#               Depends: zlib1g-dev but it is not going to be installed
+#libsqlite3-dev : Depends: libsqlite3-0 (= 3.6.22-1) but 3.8.6-1 is to be installed
+#                 Depends: libc6-dev but it is not going to be installed
+#libtiff4-dev : Depends: libc6-dev but it is not going to be installed or
+#                       libc-dev
+#              Depends: zlib1g-dev but it is not going to be installed
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
     libaprutil1-dev \
