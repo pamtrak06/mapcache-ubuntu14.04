@@ -27,15 +27,15 @@ RUN apt-get install -y git \
     libaprutil1-dev \
     libapr1-dev \
     libpng12-dev \
-    libjpeg62-dev \
+    libjpeg-dev \
     libcurl4-gnutls-dev \
     libpcre3-dev \
     libpixman-1-dev \
-    libgdal1-dev \
+    libgdal-dev \
     libgeos-dev \
     libsqlite3-dev \
     libdb-dev \
-    libtiff5-dev
+    libtiff-dev
 
 # Install Mapcache itself
 RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
