@@ -59,4 +59,4 @@ RUN apt-get install -y npm
 RUN apt-get install -y apache2
 
 # Install Firefox
-RUN apt-get install -y firefox
+#RUN apt-get install -y firefox
