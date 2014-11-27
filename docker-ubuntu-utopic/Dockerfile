@@ -43,6 +43,9 @@ RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
 RUN source /etc/apache2/envvars
 # Erase mapcache build folder
 RUN rm -rf /usr/local/src/mapcache/build
+# Resolve Could NOT find APACHE (missing:  APACHE_INCLUDE_DIR) / APACHE library/component could not be found and is a mandatory dependency
+#RUN sudo apt-cache search apache2|grep -i devel
+RUN sudo apt-get install apache2-threaded-dev
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
