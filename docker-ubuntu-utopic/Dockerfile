@@ -75,5 +75,9 @@ RUN echo "      Require all granted" >> /etc/apache2/mods-available/mapcache.con
 RUN echo "   </Directory>" >> /etc/apache2/mods-available/mapcache.conf
 RUN echo "   MapCacheAlias /mapcache \"/etc/apache2/conf-available/mapcache.xml\"" >> /etc/apache2/mods-available/mapcache.conf
 RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
+
+# Enable mapcache module
+RUN a2enmod mapcache
+
 # Install Firefox
 #RUN apt-get install -y firefox
