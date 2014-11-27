@@ -66,5 +66,14 @@ RUN apt-get install -y npm
 # Install Apache
 RUN apt-get install -y apache2
 
+# Apache2 configuration for mapcache
+RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
+
+RUN echo "<IfModule mapcache_module>" > /etc/apache2/mods-available/mapcache.conf
+RUN echo "   <Directory /usr/lib/apache2/modules/>" >> /etc/apache2/mods-available/mapcache.conf
+RUN echo "      Require all granted" >> /etc/apache2/mods-available/mapcache.conf
+RUN echo "   </Directory>" >> /etc/apache2/mods-available/mapcache.conf
+RUN echo "   MapCacheAlias /mapcache \"/etc/apache2/conf-available/mapcache.xml\"" >> /etc/apache2/mods-available/mapcache.conf
+RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 # Install Firefox
 #RUN apt-get install -y firefox
