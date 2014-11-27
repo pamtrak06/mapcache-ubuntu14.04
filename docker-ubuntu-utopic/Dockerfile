@@ -41,6 +41,8 @@ RUN apt-get install -y git \
 RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
 # Setting Apache2 environment variables
 RUN source /etc/apache2/envvars
+# Erase mapcache build folder
+RUN rm -rf /usr/local/src/mapcache/build
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
