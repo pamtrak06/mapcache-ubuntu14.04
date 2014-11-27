@@ -79,5 +79,9 @@ RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 # Enable mapcache module
 RUN a2enmod mapcache
 
+# Download mapcache.xml
+RUN cd /etc/apache2/conf-available
+RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
+
 # Install Firefox
 #RUN apt-get install -y firefox
