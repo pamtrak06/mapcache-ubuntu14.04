@@ -83,6 +83,10 @@ RUN a2enmod mapcache
 RUN cd /etc/apache2/conf-available
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
+# Create temp directory for mapcache tiles
+RUN rm -rf /tmp/geometca
+RUN mkdir /tmp/geometca
+
 # start apache
 RUN apachectl start
 
