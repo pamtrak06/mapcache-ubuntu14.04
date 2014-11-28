@@ -83,5 +83,8 @@ RUN a2enmod mapcache
 RUN cd /etc/apache2/conf-available
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
+# start apache
+RUN apachectl start
+
 # Install Firefox
 #RUN apt-get install -y firefox
