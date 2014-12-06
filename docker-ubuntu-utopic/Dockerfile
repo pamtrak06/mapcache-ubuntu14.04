@@ -82,7 +82,7 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN apachectl start
 
 # test
-# curl 127.0.0.2/mapcache/demo
+# curl http://localhost/mapcache/demo
 
 # Install Firefox
 #RUN apt-get install -y firefox
