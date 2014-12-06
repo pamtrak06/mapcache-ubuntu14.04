@@ -1,8 +1,8 @@
 # Model from https://github.com/geo-data/node-mapcache
 #
 # This creates an Ubuntu derived base image that installs a recent
-# version of Node.js as well as the latest repository checkouts of
-# Mapserver Mapcache and the Node Mapcache bindings.  Mapcache has a
+# version of Apache as well as the latest repository checkouts of
+# Mapserver Mapcache. Mapcache has a
 # broad range of compile time options enabled and as such this
 # provides a suitable base image for both experimenting with and
 # deriving production ready images from.
@@ -17,10 +17,8 @@ RUN echo "deb http://fr.archive.ubuntu.com/ubuntu utopic main universe" > /etc/a
 RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu utopic main universe" >> /etc/apt/sources.list
 RUN apt-get update
 
-# Install Node.js
+# Install compilation prerequisites
 RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
-#RUN add-apt-repository -y ppa:chris-lea/node.js
-#RUN apt-get install -y nodejs
 
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
@@ -53,15 +51,7 @@ RUN mkdir /usr/local/src/mapcache/build && \
     make && \
     make install
 
-# Install Node Mapcache. This installs to `/node_modules` so will always be found
-#RUN git clone https://github.com/geo-data/node-mapcache/ /usr/local/src/node-mapcache
-
 RUN apt-get install -y npm
-#RUN npm config set mapcache:build_dir /usr/local/src/mapcache/build && \
-#    npm install /usr/local/src/node-mapcache
-
-# Run the Node Mapcache tests by default
-#CMD npm test mapcache
 
 # Install Apache
 RUN apt-get install -y apache2
