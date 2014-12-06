@@ -75,6 +75,9 @@ RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache
 RUN rm -rf /tmp/geometca
 RUN mkdir /tmp/geometca
 
+# Configure localhost
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # start apache
 RUN apachectl start
 
