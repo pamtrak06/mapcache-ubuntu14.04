@@ -51,9 +51,6 @@ RUN mkdir /usr/local/src/mapcache/build && \
     make && \
     make install
 
-# Install Node Packaged Modules
-RUN apt-get install -y npm
-
 # Install Apache
 RUN apt-get install -y apache2
 
