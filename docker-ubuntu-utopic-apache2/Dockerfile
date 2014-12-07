@@ -77,9 +77,18 @@ RUN make native console=readline
 #RUN scons console=readline d8
 
 # Download javascript to build mapcache.xml
-RUN cd /etc/apache2/conf-available
-RUN curl -O http://pamtrak06.github.io/mapPower/mapcache.js
-#RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
+#RUN cd /var/www/html
+#RUN curl -O http://pamtrak06.github.io/jquery.min.js
+#RUN curl -O http://pamtrak06.github.io/addons/xml.js
+#RUN curl -O http://pamtrak06.github.io/ol.js
+#RUN curl -O http://pamtrak06.github.io/mapPower/mapcache.js
+# Execute javascript to build mapcache.xml with ENTRYPOINT wms/url parameter
+# TBD : execute javascript ...
+#RUN cd /etc/apache2/conf-available
+#RUN cp /var/www/html/mapcache.xml .
+
+# Download example 
+RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
 # Create temp directory for mapcache tiles
 RUN rm -rf /tmp/geometca
