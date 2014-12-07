@@ -67,9 +67,17 @@ RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 # Enable mapcache module
 RUN a2enmod mapcache
 
-# Download mapcache.xml
+# Install an javascript interpreter (V8 from chromium)
+RUN sudo apt-get install subversion scons libreadline-dev
+RUN cd /usr/local/src
+RUN svn co http://v8.googlecode.com/svn/trunk v8
+RUN cd v8/
+RUN scons console=readline d8
+
+# Download javascript to build mapcache.xml
 RUN cd /etc/apache2/conf-available
-RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
+RUN curl -O http://pamtrak06.github.io/mapPower/mapcache.js
+#RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
 # Create temp directory for mapcache tiles
 RUN rm -rf /tmp/geometca
