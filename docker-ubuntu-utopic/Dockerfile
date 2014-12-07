@@ -74,6 +74,7 @@ RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache
 # Create temp directory for mapcache tiles
 RUN rm -rf /tmp/geometca
 RUN mkdir /tmp/geometca
+RUN chmod 777 /tmp/geometca/
 
 # Configure localhost
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
