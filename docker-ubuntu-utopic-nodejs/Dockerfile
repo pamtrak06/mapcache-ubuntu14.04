@@ -19,6 +19,10 @@ RUN apt-get update
 
 # Install compilation prerequisites
 RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
+RUN add-apt-repository -y ppa:chris-lea/node.js
+RUN apt-get update
+RUN apt-get install -y nodejs
+
 
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
@@ -37,35 +41,18 @@ RUN apt-get install -y git \
 
 # Install Mapcache itself
 RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
-# Setting Apache2 environment variables
-RUN source /etc/apache2/envvars
 # Erase mapcache build folder
 RUN rm -rf /usr/local/src/mapcache/build
-# Resolve Could NOT find APACHE (missing:  APACHE_INCLUDE_DIR) / APACHE library/component could not be found and is a mandatory dependency
-#RUN sudo apt-cache search apache2|grep -i devel
-RUN sudo apt-get install apache2-threaded-dev
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
-    cmake ../ -DWITH_FCGI=0 -DWITH_APACHE=1 -DWITH_PCRE=1 -DWITH_TIFF=1 -DWITH_BERKELEY_DB=1 -DWITH_MEMCACHE=1 -DCMAKE_PREFIX_PATH="/etc/apache2" && \
+    cmake ../ -DWITH_FCGI=0 -DWITH_APACHE=0 -DWITH_PCRE=1 -DWITH_TIFF=1 -DWITH_BERKELEY_DB=1 -DWITH_MEMCACHE=1 -DCMAKE_PREFIX_PATH="/etc/apache2" && \
     make && \
     make install
 
-# Install Apache
-RUN apt-get install -y apache2
+RUN npm config set mapcache:build_dir /usr/local/src/mapcache/build && \
+    npm install /usr/local/src/node-mapcache
 
-# Apache2 configuration for mapcache
-RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
-
-RUN echo "<IfModule mapcache_module>" > /etc/apache2/mods-available/mapcache.conf
-RUN echo "   <Directory /etc/apache2/conf-available>" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "      Require all granted" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "   </Directory>" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "   MapCacheAlias /mapcache \"/etc/apache2/conf-available/mapcache.xml\"" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
-
-# Enable mapcache module
-RUN a2enmod mapcache
 
 # Download mapcache.xml
 RUN cd /etc/apache2/conf-available
@@ -77,13 +64,8 @@ RUN mkdir /tmp/geometca
 RUN chmod 777 /tmp/geometca/
 
 # Configure localhost
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# TBD
 
-# start apache
-RUN apachectl start
+# Run the Node Mapcache tests by default
+CMD npm test mapcache
 
-# test
-# curl http://localhost/mapcache/demo
-
-# Install Firefox
-#RUN apt-get install -y firefox
