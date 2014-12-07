@@ -72,7 +72,9 @@ RUN sudo apt-get install subversion scons libreadline-dev
 RUN cd /usr/local/src
 RUN svn co http://v8.googlecode.com/svn/trunk v8
 RUN cd v8/
-RUN scons console=readline d8
+RUN make builddeps
+RUN make native console=readline
+#RUN scons console=readline d8
 
 # Download javascript to build mapcache.xml
 RUN cd /etc/apache2/conf-available
@@ -89,6 +91,10 @@ RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # start apache
 RUN apachectl start
+
+EXPOSE 80
+VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
 # test
 # curl http://localhost/mapcache/demo
