@@ -87,13 +87,20 @@ RUN a2enmod mapcache
 #RUN cd /etc/apache2/conf-available
 #RUN cp /var/www/html/mapcache.xml .
 
+# Install pip
+RUN apt-get install python-pip
+# Install OGC library
+RUN pip install OWSLib
+# Download py library to produce mapcache.xml from a wms url
+RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.py
+
 # Download example 
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
 # Create temp directory for mapcache tiles
-RUN rm -rf /tmp/geometca
-RUN mkdir /tmp/geometca
-RUN chmod 777 /tmp/geometca/
+RUN rm -rf /tmp/mapcache
+RUN mkdir /tmp/mapcache
+RUN chmod 777 /tmp/mapcache
 
 # Configure localhost
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
