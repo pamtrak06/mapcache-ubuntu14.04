@@ -6,22 +6,22 @@
   </metadata>
 
   <cache name="disk" type="disk">
-    <base>/tmp/geometca</base>
+    <base>/tmp/mapcache</base>
     <symlink_blank/>
   </cache>
 
   <cache name="tmpl" type="disk">
-    <base>/tmpgeometca</base>
-    <template>/tmp/geometca/template/{tileset}#{grid}#{dim}/{z}/{x}/{y}.{ext}</template>
+    <base>/tmp/mapcache</base>
+    <template>/tmp/mapcache/template/{tileset}#{grid}#{dim}/{z}/{x}/{y}.{ext}</template>
   </cache>
 
   <cache name="sqlite" type="sqlite3">
-    <dbfile>/tmp/geometca/sqlitetiles.db</dbfile>
+    <dbfile>/tmp/mapcache/sqlitetiles.db</dbfile>
     <pragma name="key">value</pragma>
   </cache>
 
   <cache name="mbtiles" type="mbtiles">
-    <dbfile>/tmp/geometca/geometca.mbtiles</dbfile>
+    <dbfile>/tmp/mapcache/mapcache.mbtiles</dbfile>
   </cache>
 
   <format name="PNGQ_FAST" type ="PNG">
@@ -6348,7 +6348,7 @@
   <service type="demo" enabled="true"/>
 
   <errors>report</errors>
-  <lock_dir>/tmp/geometca</lock_dir>
+  <lock_dir>/tmp/mapcache</lock_dir>
   <threaded_fetching>true</threaded_fetching>
   <log_level>debug</log_level>
   <auto_reload>true</auto_reload> 

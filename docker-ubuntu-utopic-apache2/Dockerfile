@@ -67,20 +67,50 @@ RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 # Enable mapcache module
 RUN a2enmod mapcache
 
-# Download mapcache.xml
-RUN cd /etc/apache2/conf-available
+# Install an javascript interpreter (V8 from chromium)
+#RUN sudo apt-get install subversion scons libreadline-dev
+#RUN cd /usr/local/src
+#RUN svn co http://v8.googlecode.com/svn/trunk v8
+#RUN cd v8/
+#RUN make builddeps
+#RUN make native console=readline
+#RUN scons console=readline d8
+
+# Download javascript to build mapcache.xml
+#RUN cd /var/www/html
+#RUN curl -O http://pamtrak06.github.io/jquery.min.js
+#RUN curl -O http://pamtrak06.github.io/addons/xml.js
+#RUN curl -O http://pamtrak06.github.io/ol.js
+#RUN curl -O http://pamtrak06.github.io/mapPower/mapcache.js
+# Execute javascript to build mapcache.xml with ENTRYPOINT wms/url parameter
+# TBD : execute javascript ...
+#RUN cd /etc/apache2/conf-available
+#RUN cp /var/www/html/mapcache.xml .
+
+# Install pip
+RUN apt-get install python-pip
+# Install OGC library
+RUN pip install OWSLib
+# Download py library to produce mapcache.xml from a wms url
+RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.py
+
+# Download example 
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
 # Create temp directory for mapcache tiles
-RUN rm -rf /tmp/geometca
-RUN mkdir /tmp/geometca
-RUN chmod 777 /tmp/geometca/
+RUN rm -rf /tmp/mapcache
+RUN mkdir /tmp/mapcache
+RUN chmod 777 /tmp/mapcache
 
 # Configure localhost
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # start apache
 RUN apachectl start
+
+#EXPOSE 80
+#VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
+#ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
 # test
 # curl http://localhost/mapcache/demo
