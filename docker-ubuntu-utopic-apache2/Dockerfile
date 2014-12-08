@@ -68,12 +68,12 @@ RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 RUN a2enmod mapcache
 
 # Install an javascript interpreter (V8 from chromium)
-RUN sudo apt-get install subversion scons libreadline-dev
-RUN cd /usr/local/src
-RUN svn co http://v8.googlecode.com/svn/trunk v8
-RUN cd v8/
-RUN make builddeps
-RUN make native console=readline
+#RUN sudo apt-get install subversion scons libreadline-dev
+#RUN cd /usr/local/src
+#RUN svn co http://v8.googlecode.com/svn/trunk v8
+#RUN cd v8/
+#RUN make builddeps
+#RUN make native console=readline
 #RUN scons console=readline d8
 
 # Download javascript to build mapcache.xml
