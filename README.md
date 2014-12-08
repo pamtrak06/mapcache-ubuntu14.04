@@ -16,6 +16,7 @@ docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamt
 Run docker
 ```
 docker run -i -t -p 80:80 pamtrak06/ubuntu-utopic-mapcache2
+$ apachectl start
 ```
 
 get docker vm ip : 
