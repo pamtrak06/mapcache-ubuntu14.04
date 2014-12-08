@@ -38,3 +38,14 @@ GetTile
 ```
 http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=0&time=2014-12-09T06:00:00Z
 ```
+
+## Configure container
+Mapcache configuration file could be fully modified or replaced
+```
+vi /etc/apache2/conf-available/mapcache.xml
+```
+with help from http://mapserver.org/fr/mapcache/config.html,
+and then after modification restart apache server like
+```
+apachectl restart
+```
