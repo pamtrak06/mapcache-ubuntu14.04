@@ -15,7 +15,7 @@ docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamt
 
 Boot docker
 ```
-boot2docker start
+$ boot2docker start
 ```
 
 Run container
@@ -26,7 +26,7 @@ $ apachectl start
 
 get docker vm ip : 
 ```
-boot2Docker ip => 192.168.59.103
+$ boot2Docker ip => 192.168.59.103
 ```
 
 GetCapabilities
@@ -42,10 +42,12 @@ http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/p
 ## Configure container
 Mapcache configuration file could be fully modified or replaced
 ```
-vi /etc/apache2/conf-available/mapcache.xml
+$ vi /etc/apache2/conf-available/mapcache.xml
 ```
 with help from http://mapserver.org/fr/mapcache/config.html,
 and then after modification restart apache server like
 ```
-apachectl restart
+$ apachectl restart
 ```
+
+Take care about mapcache cache strategy (with type="disk" all is stored in container)
