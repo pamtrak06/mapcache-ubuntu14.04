@@ -13,7 +13,7 @@ docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamt
 
 ## Get capabilities/ get tile
 
-get docker vm ip : boot2Docker ip
+get docker vm ip : boot2Docker ip => 192.168.59.103
 
 GetCapabilities
 http://192.168.59.103/mapcache/wmts/?service=wmts&request=getCapabilities
