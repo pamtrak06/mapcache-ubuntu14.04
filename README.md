@@ -55,3 +55,12 @@ $ apachectl restart
 ```
 
 Take care about mapcache cache strategy (with type="disk" all is stored in container)
+
+Mapcache configuration file could be built from python script mapcache.py, arguments are :
+```
+$  mapcache.py -wms <wms url> -prj <project name>
+```
+Example :
+```
+$  mapcache.py -wms http://geo.weather.gc.ca/geomet/?lang=E -prj geometca
+```
