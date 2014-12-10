@@ -62,5 +62,5 @@ $  python mapcache.py -wms <wms url> -prj <project name>
 ```
 Example :
 ```
-$  python mapcache.py -wms http://geo.weather.gc.ca/geomet/?lang=E -prj geometca
+$  python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj geometca
 ```
