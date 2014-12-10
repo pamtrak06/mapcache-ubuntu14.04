@@ -13,7 +13,7 @@ Bug identified
 ...
 Fetched 9756 kB in 46s (209 kB/s)                                                                                  
 Reading package lists... Done
-W: GPG error: http://ppa.launchpad.net utopic Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 2836CB0A8AC93F7A
+W: GPG error: http://ppa.launchpad.net utopic Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY <KEY NUMBER>
 root@7a80f13e708b:/# GPG error: http://ppa.launchpad.net utopic Release: The following signatures couldn't be verified because the public key is not available^C
 ```
 Solution
