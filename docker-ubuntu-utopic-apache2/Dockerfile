@@ -91,11 +91,15 @@ RUN a2enmod mapcache
 RUN apt-get install python-pip
 # Install OGC library
 RUN pip install OWSLib
+# Set path for mapcache file
+RUN cd /etc/apache2/conf-available/
 # Download py library to produce mapcache.xml from a wms url
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.py
+# Generate mapcache.xml sample
+RUN python mapcache.py -wms http://geo.weather.gc.ca/geomet/?lang=E -prj mapcache
 
 # Download example 
-RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
+#RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
 
 # Create temp directory for mapcache tiles
 RUN rm -rf /tmp/mapcache
