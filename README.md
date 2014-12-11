@@ -1,12 +1,25 @@
 mapcache
 ========
 
-ubuntu &amp; mapcache
+Docker ubuntu &amp; mapcache
 
 ## Build mapcache 
 
 ### for ubuntu:utopic & apache2
 docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamtrak06/mapcache/master/docker-ubuntu-utopic-apache2/Dockerfile
+
+Bug identified
+```
+...
+Fetched 9756 kB in 46s (209 kB/s)                                                                                  
+Reading package lists... Done
+W: GPG error: http://ppa.launchpad.net utopic Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY <KEY NUMBER>
+root@7a80f13e708b:/# GPG error: http://ppa.launchpad.net utopic Release: The following signatures couldn't be verified because the public key is not available^C
+```
+Solution
+```
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com <key number>
+```
 
 ### for ubuntu:utopic & nodejs (under construction)
 ~~docker build -t pamtrak06/mapcache:latest~~ ~~https://raw.githubusercontent.com/pamtrak06/mapcache/master/docker-ubuntu-utopic-nodejs/Dockerfile~~
@@ -55,3 +68,12 @@ $ apachectl restart
 ```
 
 Take care about mapcache cache strategy (with type="disk" all is stored in container)
+
+Mapcache configuration file could be built from python script mapcache.py, arguments are :
+```
+$  python mapcache.py -wms <wms url> -prj <project name>
+```
+Example :
+```
+$  python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj geometca
+```
