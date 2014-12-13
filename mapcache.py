@@ -187,7 +187,7 @@ def main(argv):
     mapcache += u"&lt;/mapcache&gt;\n";
 
     escmapcache = unescape(mapcache);
-    print escmapcache;
+    #print escmapcache;
     #fmapcache = ET.fromstring(ET.tostring(escmapcache.encode("utf8"), method="xml"));
     #tree = ET.XML(escmapcache.encode("utf8"));
     with open("mapcache.xml", "w") as f:
