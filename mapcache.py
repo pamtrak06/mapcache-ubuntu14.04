@@ -153,7 +153,7 @@ def main(argv):
             style = arrayTab[sname];
             tileset = layer.name + u"_" + sname;
             source = u"SOURCE_" + layer.name + u"_" + sname;
-            mapcache += u"    &lt;forwarding_rule name=\"RULE" + tileset + u"&gt;\n";
+            mapcache += u"    &lt;forwarding_rule name=\"RULE" + tileset + u"\"&gt;\n";
             mapcache += u"      &lt;param name=\"SERVICE\" type=\"values\"&gt;WMS&lt;/param&gt;\n";
             mapcache += u"      &lt;param name=\"LAYERS\" type=\"values\"&gt;" + layer.name + u"&lt;/param&gt;\n";
             mapcache += u"      &lt;param name=\"STYLES\" type=\"values\"&gt;" + sname + u"&lt;/param&gt;\n";
