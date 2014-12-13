@@ -97,7 +97,7 @@ RUN cd /etc/apache2/conf-available/
 # Download py library to produce mapcache.xml from a wms url
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.py
 # Generate mapcache.xml sample
-RUN python mapcache.py -wms http://geo.weather.gc.ca/geomet/?lang=E -prj mapcache
+RUN python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache
 
 # Download example 
 #RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
