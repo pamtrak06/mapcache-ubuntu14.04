@@ -8,26 +8,33 @@
 # deriving production ready images from.
 #
 
-FROM ubuntu:utopic
+FROM ubuntu:14.04
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Ensure the package repository is up to date
-RUN echo "deb http://fr.archive.ubuntu.com/ubuntu utopic main universe" > /etc/apt/sources.list
+#RUN echo "deb http://fr.archive.ubuntu.com/ubuntu utopic main universe" > /etc/apt/sources.list
 #RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu utopic main universe" >> /etc/apt/sources.list
-RUN echo "deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu utopic main" >> /etc/apt/sources.list
-# Take account about PUBKEY
-RUN apt-get update > apt-get_update.log
-RUN more apt-get_update.log | grep NO_PUBKEY | awk -F 'NO_PUBKEY ' '{print $2}' > PUBKEY.txt
-RUN rm -f apt-get_update.log
-ENV PUBKEY=`more PUBKEY.txt`
-RUN rm -f PUBKEY.txt
-RUN sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com $PUBKEY
-RUN unset PUBKEY
-# Update os
-RUN apt-get update
+RUN echo "deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu trusty-security main restricted" >> /etc/apt/sources.list
 
-# Install compilation prerequisites
+# Take account about PUBKEY
+#RUN apt-get update &> apt-get_update.log
+#RUN more apt-get_update.log | grep NO_PUBKEY | awk -F 'NO_PUBKEY ' '{print $2}' > PUBKEY.txt
+#RUN rm -f apt-get_update.log
+#ENV PUBKEY=`more PUBKEY.txt`
+#RUN rm -f PUBKEY.txt
+#RUN sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com $PUBKEY
+#RUN unset PUBKEY
+# Update os
+RUN sudo apt-get update
+
+# Install Apache
+RUN apt-get install -y apache2
+
+# Configure localhost
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Install mapcache compilation prerequisites
 RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
 
 # Install mapcache dependencies provided by Ubuntu repositories
@@ -60,9 +67,6 @@ RUN mkdir /usr/local/src/mapcache/build && \
     cmake ../ -DWITH_FCGI=0 -DWITH_APACHE=1 -DWITH_PCRE=1 -DWITH_TIFF=1 -DWITH_BERKELEY_DB=1 -DWITH_MEMCACHE=1 -DCMAKE_PREFIX_PATH="/etc/apache2" && \
     make && \
     make install
-
-# Install Apache
-RUN apt-get install -y apache2
 
 # Apache2 configuration for mapcache
 RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
@@ -115,9 +119,6 @@ RUN python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapca
 RUN rm -rf /tmp/mapcache
 RUN mkdir /tmp/mapcache
 RUN chmod 777 /tmp/mapcache
-
-# Configure localhost
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # start apache
 RUN apachectl start
