@@ -60,7 +60,7 @@ RUN source /etc/apache2/envvars
 RUN rm -rf /usr/local/src/mapcache/build
 # Resolve Could NOT find APACHE (missing:  APACHE_INCLUDE_DIR) / APACHE library/component could not be found and is a mandatory dependency
 #RUN sudo apt-cache search apache2|grep -i devel
-RUN sudo apt-get install apache2-threaded-dev < echo "Y"
+RUN echo "Y" | sudo apt-get install apache2-threaded-dev
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
