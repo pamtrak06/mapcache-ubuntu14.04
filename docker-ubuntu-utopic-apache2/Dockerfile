@@ -80,6 +80,9 @@ RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 # Enable mapcache module
 RUN a2enmod mapcache
 
+# Force buit libmapcache dependencies
+RUN ldconfig
+
 # Install an javascript interpreter (V8 from chromium)
 #RUN sudo apt-get install subversion scons libreadline-dev
 #RUN cd /usr/local/src
