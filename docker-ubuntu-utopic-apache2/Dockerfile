@@ -16,12 +16,16 @@ MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 RUN echo "deb http://fr.archive.ubuntu.com/ubuntu utopic main universe" > /etc/apt/sources.list
 #RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu utopic main universe" >> /etc/apt/sources.list
 RUN echo "deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu utopic main" >> /etc/apt/sources.list
+# Take account about PUBKEY
 RUN apt-get update > apt-get_update.log
 RUN more apt-get_update.log | grep NO_PUBKEY | awk -F 'NO_PUBKEY ' '{print $2}' > PUBKEY.txt
 RUN rm -f apt-get_update.log
 ENV PUBKEY=`more PUBKEY.txt`
 RUN rm -f PUBKEY.txt
 RUN sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com $PUBKEY
+RUN unset PUBKEY
+# Update os
+RUN apt-get update
 
 # Install compilation prerequisites
 RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
