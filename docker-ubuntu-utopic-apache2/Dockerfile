@@ -60,7 +60,7 @@ RUN source /etc/apache2/envvars
 RUN rm -rf /usr/local/src/mapcache/build
 # Resolve Could NOT find APACHE (missing:  APACHE_INCLUDE_DIR) / APACHE library/component could not be found and is a mandatory dependency
 #RUN sudo apt-cache search apache2|grep -i devel
-RUN sudo apt-get install apache2-threaded-dev
+RUN sudo apt-get install apache2-threaded-dev < echo "Y"
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
@@ -70,7 +70,6 @@ RUN mkdir /usr/local/src/mapcache/build && \
 
 # Apache2 configuration for mapcache
 RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
-
 RUN echo "<IfModule mapcache_module>" > /etc/apache2/mods-available/mapcache.conf
 RUN echo "   <Directory /etc/apache2/conf-available>" >> /etc/apache2/mods-available/mapcache.conf
 RUN echo "      Require all granted" >> /etc/apache2/mods-available/mapcache.conf
@@ -102,7 +101,7 @@ RUN a2enmod mapcache
 #RUN cp /var/www/html/mapcache.xml .
 
 # Install pip
-RUN apt-get install python-pip
+RUN apt-get install python-pip < echo "Y"
 # Install OGC library
 RUN pip install OWSLib
 # Set path for mapcache file
