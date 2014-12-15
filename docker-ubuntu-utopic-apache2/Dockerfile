@@ -122,10 +122,8 @@ RUN rm -rf /tmp/mapcache
 RUN mkdir /tmp/mapcache
 RUN chmod 777 /tmp/mapcache
 
-# start apache
-RUN apachectl start
-
-#VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
+# Volumes
+VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
 
 # Define default command
 CMD ["apachectl", "-D", "FOREGROUND"]
