@@ -130,3 +130,4 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 # Expose ports
 EXPOSE 80
+EXPOSE 443
