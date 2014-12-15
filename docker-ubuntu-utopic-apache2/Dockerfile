@@ -125,12 +125,10 @@ RUN chmod 777 /tmp/mapcache
 # start apache
 RUN apachectl start
 
-#EXPOSE 80
 #VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
-#ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
-# test
-# curl http://localhost/mapcache/demo
+# Define default command
+CMD ["apachectl", "-D", "FOREGROUND"]
 
-# Install Firefox
-#RUN apt-get install -y firefox
+# Expose ports
+EXPOSE 80
