@@ -1,35 +1,11 @@
-# Model from https://github.com/geo-data/node-mapcache
-#
-# This creates an Ubuntu derived base image that installs a recent
-# version of Apache as well as the latest repository checkouts of
-# Mapserver Mapcache. Mapcache has a
-# broad range of compile time options enabled and as such this
-# provides a suitable base image for both experimenting with and
-# deriving production ready images from.
-#
-
 FROM ubuntu:14.04
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
-# Ensure the package repository is up to date
-#RUN echo "deb http://fr.archive.ubuntu.com/ubuntu utopic main universe" > /etc/apt/sources.list
-#RUN echo "deb http://ppa.launchpad.net/smartlounge/ppa/ubuntu utopic main universe" >> /etc/apt/sources.list
 RUN echo "deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu trusty-security main restricted" >> /etc/apt/sources.list
 
-# Take account about PUBKEY
-#RUN apt-get update &> apt-get_update.log
-#RUN more apt-get_update.log | grep NO_PUBKEY | awk -F 'NO_PUBKEY ' '{print $2}' > PUBKEY.txt
-#RUN rm -f apt-get_update.log
-#ENV PUBKEY=`more PUBKEY.txt`
-#RUN rm -f PUBKEY.txt
-#RUN sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com $PUBKEY
-#RUN unset PUBKEY
-# Update os
-RUN sudo apt-get update
-
-# Install Apache
-RUN apt-get install -y apache2
+# Update os & Install Apache
+RUN sudo apt-get update && apt-get install -y apache2
 
 # Configure localhost
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
