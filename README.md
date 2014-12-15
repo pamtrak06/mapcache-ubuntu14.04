@@ -3,9 +3,10 @@
 "MapCache is a server that implements tile caching to speed up access to WMS layers. The primary objectives are to be fast and easily deployable, while offering the essential features (and more!) expected from a tile caching solution." 
 
 > [Source : www.mapserver.org/mapcache ](http://www.mapserver.org/mapcache/)
-> [Slideshare](http://fr.slideshare.net/tbonfort/modgeocache-mapcache-a-fast-tiling-solution-for-the-apache-web-server)
 
 ![logo](http://www.mapserver.org/_static/banner.png)
+
+> [Slideshare](http://fr.slideshare.net/tbonfort/modgeocache-mapcache-a-fast-tiling-solution-for-the-apache-web-server)
 
 # How to use this image
 
