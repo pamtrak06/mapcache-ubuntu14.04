@@ -2,12 +2,16 @@ FROM ubuntu:14.04
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
+# Update packages sources
 RUN echo "deb http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu trusty-security main restricted" >> /etc/apt/sources.list
 
-# Update os & Install Apache
-RUN sudo apt-get update && apt-get install -y apache2
+# Update os & install Apache
+RUN sudo apt-get update && apt-get install -y apache2 apache2-threaded-dev
 
-# Configure localhost
+# Set Apache environment variables
+RUN source /etc/apache2/envvars
+
+# Configure localhost in Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Install mapcache compilation prerequisites
@@ -30,13 +34,7 @@ RUN apt-get install -y git \
 
 # Install Mapcache itself
 RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
-# Setting Apache2 environment variables
-RUN source /etc/apache2/envvars
-# Erase mapcache build folder
-RUN rm -rf /usr/local/src/mapcache/build
-# Resolve Could NOT find APACHE (missing:  APACHE_INCLUDE_DIR) / APACHE library/component could not be found and is a mandatory dependency
-#RUN sudo apt-cache search apache2|grep -i devel
-RUN echo "Y" | sudo apt-get install apache2-threaded-dev
+
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
@@ -44,7 +42,7 @@ RUN mkdir /usr/local/src/mapcache/build && \
     make && \
     make install
 
-# Apache2 configuration for mapcache
+# Apache configuration for mapcache
 RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
 RUN echo "<IfModule mapcache_module>" > /etc/apache2/mods-available/mapcache.conf
 RUN echo "   <Directory /etc/apache2/conf-available>" >> /etc/apache2/mods-available/mapcache.conf
@@ -53,48 +51,24 @@ RUN echo "   </Directory>" >> /etc/apache2/mods-available/mapcache.conf
 RUN echo "   MapCacheAlias /mapcache \"/etc/apache2/conf-available/mapcache.xml\"" >> /etc/apache2/mods-available/mapcache.conf
 RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 
-# Enable mapcache module
+# Enable mapcache module in Apache
 RUN a2enmod mapcache
 
-# Force buit libmapcache dependencies
+# Force buit libraries dependencies
 RUN ldconfig
 
-# Install an javascript interpreter (V8 from chromium)
-#RUN sudo apt-get install subversion scons libreadline-dev
-#RUN cd /usr/local/src
-#RUN svn co http://v8.googlecode.com/svn/trunk v8
-#RUN cd v8/
-#RUN make builddeps
-#RUN make native console=readline
-#RUN scons console=readline d8
-
-# Download javascript to build mapcache.xml
-#RUN cd /var/www/html
-#RUN curl -O http://pamtrak06.github.io/jquery.min.js
-#RUN curl -O http://pamtrak06.github.io/addons/xml.js
-#RUN curl -O http://pamtrak06.github.io/ol.js
-#RUN curl -O http://pamtrak06.github.io/mapPower/mapcache.js
-# Execute javascript to build mapcache.xml with ENTRYPOINT wms/url parameter
-# TBD : execute javascript ...
-#RUN cd /etc/apache2/conf-available
-#RUN cp /var/www/html/mapcache.xml .
-
 # Install pip
-RUN apt-get install python-pip < echo "Y"
+RUN apt-get -y install python-pip
 # Install OGC library
 RUN pip install OWSLib
 # Set path for mapcache file
 RUN cd /etc/apache2/conf-available/
 # Download py library to produce mapcache.xml from a wms url
 RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.py
-# Generate mapcache.xml sample
+# Build mapcache.xml sample
 RUN python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache
 
-# Download example 
-#RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.xml
-
 # Create temp directory for mapcache tiles
-RUN rm -rf /tmp/mapcache
 RUN mkdir /tmp/mapcache
 RUN chmod 777 /tmp/mapcache
 
