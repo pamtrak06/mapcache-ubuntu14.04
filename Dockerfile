@@ -1,4 +1,5 @@
-FROM pamtrak06/ubuntu-apache2:latest
+FROM mobingi/ubuntu-apache2-python:latest
+#FROM pamtrak06/ubuntu-apache2:latest
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
