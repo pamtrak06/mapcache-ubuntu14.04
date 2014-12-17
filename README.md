@@ -10,13 +10,12 @@
 
 # How to use this image
 
-## build mapcache instance
+## Build mapcache
 
-### for ubuntu:utopic & apache2
+This image is built under ubuntu.
+```
 docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamtrak06/mapcache/master/docker-ubuntu-utopic-apache2/Dockerfile
-
-### for ubuntu:utopic & nodejs (under construction)
-~~docker build -t pamtrak06/mapcache:latest~~ ~~https://raw.githubusercontent.com/pamtrak06/mapcache/master/docker-ubuntu-utopic-nodejs/Dockerfile~~
+```
 
 ## Run Mapcache
 
