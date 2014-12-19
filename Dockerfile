@@ -7,8 +7,6 @@ RUN apt-get install -y software-properties-common g++ make cmake
 
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y \
-    libaprutil1-dev \
-    libapr1-dev \
     libpng12-dev \
     libjpeg-dev \
     libcurl4-gnutls-dev \
