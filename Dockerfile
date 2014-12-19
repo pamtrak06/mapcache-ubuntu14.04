@@ -3,7 +3,7 @@ FROM pamtrak06/ubuntu14.04-apache2
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Install mapcache compilation prerequisites
-RUN apt-get install -y software-properties-common python-software-properties python g++ make cmake
+RUN apt-get install -y software-properties-common g++ make cmake
 
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
@@ -45,8 +45,6 @@ RUN a2enmod mapcache
 # Force buit libraries dependencies
 RUN ldconfig
 
-# Install pip
-RUN apt-get -y install python-pip
 # Install OGC library
 RUN pip install OWSLib
 # Set path for mapcache file
