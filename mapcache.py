@@ -24,8 +24,8 @@ def main(argv):
         elif opt in ("-p", "-prj", "--prj"):
             project = arg;
 
-    logging.info(u"WMS url is ", wmsUrl);
-    logging.info(u"Project name is ", project);
+    #logging.info(u"WMS url is ", wmsUrl);
+    #logging.info(u"Project name is ", project);
 
     wms = WebMapService(wmsUrl, version=u"1.1.1")
     #wms.identification.type
@@ -96,9 +96,9 @@ def main(argv):
     for layername in wms.contents:
         layer = wms.contents[layername];
 
-        logging.info("Layer:" + layer.name);
-        logging.info("\tAvailable elevations: ".join(layer.elevations));
-        logging.info("\tAvailable times: ".join(layer.timepositions));
+        #logging.info("Layer:" + layer.name);
+        #logging.info("\tAvailable elevations: ".join(layer.elevations));
+        #logging.info("\tAvailable times: ".join(layer.timepositions));
 
         arrayTab = layer.styles;
         for sname in arrayTab:
