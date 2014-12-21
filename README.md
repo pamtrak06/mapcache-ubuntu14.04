@@ -17,6 +17,8 @@ This image is built under ubuntu.
 docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamtrak06/mapcache-ubuntu/master/Dockerfile
 ```
 
+Embedded wmts example from Data source : Environnement Canada, (licence)[http://dd.meteo.gc.ca/doc/LICENCE_GENERAL.txt]
+
 ## Run Mapcache
 
 Boot docker
@@ -47,7 +49,7 @@ http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/p
 http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=1&time=2014-12-09T06:00:00Z
 ```
 
-![ScreenShot](https://github.com/pamtrak06/mapcache/blob/master/geometca0.png)![ScreenShot](https://github.com/pamtrak06/mapcache/blob/master/geometca1.png)
+![ScreenShot](geometca0.png)![ScreenShot](geometca1.png)
 
 ## Configure container
 Mapcache configuration file could be fully modified or replaced

@@ -1,4 +1,4 @@
-FROM pamtrak06/ubuntu-apache2-python
+FROM pamtrak06/ubuntu14.04-apache2-python
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
@@ -30,6 +30,9 @@ RUN mkdir /usr/local/src/mapcache/build && \
     make && \
     make install
 
+# Force buit libraries dependencies
+RUN ldconfig
+
 # Apache configuration for mapcache
 RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
 RUN echo "<IfModule mapcache_module>" > /etc/apache2/mods-available/mapcache.conf
@@ -41,9 +44,6 @@ RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
 
 # Enable mapcache module in Apache
 RUN a2enmod mapcache
-
-# Force buit libraries dependencies
-RUN ldconfig
 
 # Install OGC library
 RUN pip install OWSLib
