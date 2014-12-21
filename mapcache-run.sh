@@ -22,8 +22,8 @@ if [ $# -eq 0 ]
         python mapcache.py --wms $url --prj $cache
 
         # Create temp directory for mapcache tiles
-        RUN mkdir /tmp/$cache
-        RUN chmod 777 /$cache
+        mkdir /tmp/$cache
+        chmod 777 /$cache
 
         # restart apache and mapcache module
         apachectl restart
