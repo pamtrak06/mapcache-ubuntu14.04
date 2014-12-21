@@ -38,7 +38,7 @@ ADD mapcache.load /etc/apache2/mods-available/
 ADD mapcache.conf /etc/apache2/mods-available/
 
 # Download py library to produce mapcache.xml from a wms url
-ADD mapcache.py /etc/apache2/conf-available/
+ADD mapcache.py /etc/apache2/conf-available/mapcache.py
 
 # Build mapcache.xml sample
 RUN cd /etc/apache2/conf-available/
