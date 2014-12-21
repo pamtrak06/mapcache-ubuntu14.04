@@ -28,11 +28,20 @@ $ boot2docker start
 
 Run container
 ```
-docker run -i -t -p 80:80 pamtrak06/ubuntu-utopic-mapcache2
-$ apachectl start
+$ docker run -i -t pamtrak06/ubuntu-utopic-mapcache2
 ```
 
-get docker vm ip : 
+Exit container without stop it
+```
+CTRL+P  &  CTRL+Q
+```
+
+Open a terminal session on e running container
+```
+$ docker exec -i -t pamtrak06/ubuntu-utopic-mapcache2 /bin/bash
+```
+
+Get docker vm ip : 
 ```
 $ boot2Docker ip => 192.168.59.103
 ```
@@ -52,11 +61,13 @@ http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/p
 ![ScreenShot](geometca0.png)![ScreenShot](geometca1.png)
 
 ## Configure container
-Mapcache configuration file could be fully modified or replaced
+Mapcache configuration file could be fully modified or replaced.
+Prerequisite : open a terminal session in the container.
+
 ```
 $ vi /etc/apache2/conf-available/mapcache.xml
 ```
-with help from http://mapserver.org/fr/mapcache/config.html,
+configure mapcache.xml with help from http://mapserver.org/fr/mapcache/config.html,
 and then after modification restart apache server like
 ```
 $ apachectl restart
@@ -64,7 +75,7 @@ $ apachectl restart
 
 Take care about mapcache cache strategy (with type="disk" all is stored in container)
 
-Mapcache configuration file could be built from python script mapcache-run.sh, arguments are :
+Mapcache configuration file could be generate from script mapcache-run.sh, arguments are :
 ```
 $ cd /etc/apache2/conf-available/
 $ ./mapcache.sh <wms url> <project name>
