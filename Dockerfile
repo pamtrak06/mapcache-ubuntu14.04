@@ -34,11 +34,11 @@ RUN mkdir /usr/local/src/mapcache/build && \
 RUN ldconfig
 
 # Apache configuration for mapcache
-ADD mapcache.load /etc/apache2/mods-available/
-ADD mapcache.conf /etc/apache2/mods-available/
+COPY mapcache.load /etc/apache2/mods-available/
+COPY mapcache.conf /etc/apache2/mods-available/
 
 # Download py library to produce mapcache.xml from a wms url
-ADD mapcache.py /etc/apache2/conf-available/mapcache.py
+COPY mapcache.py /etc/apache2/conf-available/
 
 # Build mapcache.xml sample
 RUN cd /etc/apache2/conf-available/
