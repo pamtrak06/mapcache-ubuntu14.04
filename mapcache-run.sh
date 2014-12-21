@@ -18,8 +18,6 @@ if [ $# -eq 0 ]
 
       else
 
-        cd /etc/apache/conf-available
-
         # generate mapcache.xml from capabilities
         python mapcache.py --wms $url --prj $cache
 
