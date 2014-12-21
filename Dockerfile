@@ -43,8 +43,6 @@ COPY mapcache.conf /etc/apache2/mods-available/
 # Download scripts to build mapcache.xml from a wms url
 COPY mapcache.py /etc/apache2/conf-available/
 COPY mapcache-run.sh /etc/apache2/conf-available/
-# Add script to PATH
-RUN export PATH=$PATH:/etc/apache2/conf-available/
 
 # Build mapcache.xml sample
 RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache \
