@@ -40,8 +40,9 @@ RUN ldconfig
 COPY mapcache.load /etc/apache2/mods-available/
 COPY mapcache.conf /etc/apache2/mods-available/
 
-# Download py library to produce mapcache.xml from a wms url
+# Download scripts to build mapcache.xml from a wms url
 COPY mapcache.py /etc/apache2/conf-available/
+COPY mapcache-run.sh /etc/apache2/conf-available/
 
 # Build mapcache.xml sample
 RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache \

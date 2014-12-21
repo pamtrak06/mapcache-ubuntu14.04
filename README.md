@@ -64,11 +64,11 @@ $ apachectl restart
 
 Take care about mapcache cache strategy (with type="disk" all is stored in container)
 
-Mapcache configuration file could be built from python script mapcache.py, arguments are :
+Mapcache configuration file could be built from python script mapcache-run.sh, arguments are :
 ```
-$  python mapcache.py -wms <wms url> -prj <project name>
+$ python /etc/apache2/conf-available/mapcache.sh <wms url> <project name>
 ```
 Example :
 ```
-$  python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj geometca
+$  python /etc/apache2/conf-available/mapcache.sh http://geo.weather.gc.ca/geomet/?lang=E geometca
 ```
