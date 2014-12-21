@@ -36,7 +36,7 @@ Exit container without stop it
 CTRL+P  &  CTRL+Q
 ```
 
-Open a terminal session on e running container
+Open a terminal session on a running container
 ```
 $ docker exec -i -t pamtrak06/ubuntu-utopic-mapcache2 /bin/bash
 ```
