@@ -26,7 +26,10 @@ RUN git clone https://github.com/mapserver/mapcache/ /usr/local/src/mapcache
 # Compile Mapcache for Apache
 RUN mkdir /usr/local/src/mapcache/build && \
     cd /usr/local/src/mapcache/build && \
-    cmake ../ -DWITH_FCGI=0 -DWITH_APACHE=1 -DWITH_PCRE=1 -DWITH_TIFF=1 -DWITH_BERKELEY_DB=1 -DWITH_MEMCACHE=1 -DCMAKE_PREFIX_PATH="/etc/apache2" && \
+    cmake ../ \
+    -DWITH_FCGI=0 -DWITH_APACHE=1 -DWITH_PCRE=1 \
+    -DWITH_TIFF=1 -DWITH_BERKELEY_DB=1 -DWITH_MEMCACHE=1 \
+    -DCMAKE_PREFIX_PATH="/etc/apache2" && \
     make && \
     make install
 
@@ -34,15 +37,15 @@ RUN mkdir /usr/local/src/mapcache/build && \
 RUN ldconfig
 
 # Apache configuration for mapcache
-ADD mapcache.load /etc/apache2/mods-available/
-ADD mapcache.conf /etc/apache2/mods-available/
+COPY mapcache.load /etc/apache2/mods-available/
+COPY mapcache.conf /etc/apache2/mods-available/
 
 # Download py library to produce mapcache.xml from a wms url
-ADD mapcache.py /etc/apache2/conf-available/
+COPY mapcache.py /etc/apache2/conf-available/
 
 # Build mapcache.xml sample
-RUN cd /etc/apache2/conf-available/
-RUN python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache
+RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache \
+    && mv mapcache.xml /etc/apache2/conf-available/
 
 # Enable mapcache module in Apache
 RUN a2enmod mapcache
