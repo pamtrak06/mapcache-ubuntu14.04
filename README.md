@@ -66,9 +66,12 @@ Take care about mapcache cache strategy (with type="disk" all is stored in conta
 
 Mapcache configuration file could be built from python script mapcache-run.sh, arguments are :
 ```
-$ python /etc/apache2/conf-available/mapcache.sh <wms url> <project name>
+$ cd /etc/apache2/conf-available/
+$ ./mapcache.sh <wms url> <project name>
 ```
 Example :
 ```
-$  python /etc/apache2/conf-available/mapcache.sh http://geo.weather.gc.ca/geomet/?lang=E geometca
+$ cd /etc/apache2/conf-available/
+$  ./mapcache.sh http://geo.weather.gc.ca/geomet/?lang=E geometca
+$ ls mapcache.xml
 ```
