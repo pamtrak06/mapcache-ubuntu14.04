@@ -1,7 +1,1 @@
 LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so
-<IfModule mapcache_module>
-   <Directory /etc/apache2/conf-available>
-      Require all granted
-   </Directory>
-   MapCacheAlias /mapcache "/etc/apache2/conf-available/mapcache.xml"
-</IfModule>
