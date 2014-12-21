@@ -190,7 +190,7 @@ def main(argv):
     #print escmapcache;
     #fmapcache = ET.fromstring(ET.tostring(escmapcache.encode("utf8"), method="xml"));
     #tree = ET.XML(escmapcache.encode("utf8"));
-    with open("/etc/apache2/conf-available/mapcache.xml", "w") as f:
+    with open("mapcache.xml", "w") as f:
         #f.write(ET.tostring(tree))
         f.write(escmapcache)
 
