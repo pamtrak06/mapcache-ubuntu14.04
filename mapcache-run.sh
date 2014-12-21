@@ -23,7 +23,7 @@ if [ $# -eq 0 ]
 
         # Create temp directory for mapcache tiles
         mkdir /tmp/$cache
-        chmod 777 /$cache
+        chmod 777 /tmp/$cache
 
         # restart apache and mapcache module
         apachectl restart
