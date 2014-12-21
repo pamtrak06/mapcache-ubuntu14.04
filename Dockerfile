@@ -34,25 +34,18 @@ RUN mkdir /usr/local/src/mapcache/build && \
 RUN ldconfig
 
 # Apache configuration for mapcache
-RUN echo "LoadModule mapcache_module    /usr/lib/apache2/modules/mod_mapcache.so" > /etc/apache2/mods-available/mapcache.load
-RUN echo "<IfModule mapcache_module>" > /etc/apache2/mods-available/mapcache.conf
-RUN echo "   <Directory /etc/apache2/conf-available>" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "      Require all granted" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "   </Directory>" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "   MapCacheAlias /mapcache \"/etc/apache2/conf-available/mapcache.xml\"" >> /etc/apache2/mods-available/mapcache.conf
-RUN echo "</IfModule>" >> /etc/apache2/mods-available/mapcache.conf
+ADD mapcache.load /etc/apache2/mods-available/
+ADD mapcache.conf /etc/apache2/mods-available/
+
+# Download py library to produce mapcache.xml from a wms url
+ADD mapcache.py /etc/apache2/conf-available/
+
+# Build mapcache.xml sample
+RUN cd /etc/apache2/conf-available/
+RUN python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache
 
 # Enable mapcache module in Apache
 RUN a2enmod mapcache
-
-# Install OGC library
-RUN pip install OWSLib
-# Set path for mapcache file
-RUN cd /etc/apache2/conf-available/
-# Download py library to produce mapcache.xml from a wms url
-RUN curl -O https://raw.githubusercontent.com/pamtrak06/mapcache/master/mapcache.py
-# Build mapcache.xml sample
-RUN python mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache
 
 # Create temp directory for mapcache tiles
 RUN mkdir /tmp/mapcache
