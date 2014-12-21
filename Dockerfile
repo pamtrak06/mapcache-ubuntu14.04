@@ -1,4 +1,4 @@
-FROM pamtrak06/ubuntu-apache2-python
+FROM pamtrak06/ubuntu14.04-apache2-python
 
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
