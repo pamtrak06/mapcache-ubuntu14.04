@@ -44,8 +44,8 @@ COPY mapcache.conf /etc/apache2/mods-available/
 COPY mapcache.py /etc/apache2/conf-available/
 
 # Build mapcache.xml sample
-RUN cd /etc/apache2/conf-available/
-RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache
+RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache \
+    && mv mapcache.xml /etc/apache2/conf-available/
 
 # Enable mapcache module in Apache
 RUN a2enmod mapcache
