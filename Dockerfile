@@ -53,7 +53,7 @@ RUN a2enmod mapcache
 
 # Create temp directory for mapcache tiles
 RUN mkdir /tmp/mapcache
-RUN chmod 777 /tmp/mapcache
+RUN chmod 755 /tmp/mapcache
 
 # Volumes
 VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
