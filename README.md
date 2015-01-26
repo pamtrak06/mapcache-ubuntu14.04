@@ -14,7 +14,7 @@
 
 This image is built under ubuntu.
 ```
-docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamtrak06/mapcache-ubuntu/master/Dockerfile
+docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamtrak06/mapcache-ubuntu14.04/master/Dockerfile
 ```
 
 Embedded wmts example from Data source : Environnement Canada, (licence)[http://dd.meteo.gc.ca/doc/LICENCE_GENERAL.txt]
@@ -28,7 +28,7 @@ $ boot2docker start
 
 Run container
 ```
-$ docker run -i -t pamtrak06/ubuntu-utopic-mapcache2
+$ docker run -i -t pamtrak06/mapcache-ubuntu14.04
 ```
 
 Exit container without stop it
@@ -38,7 +38,7 @@ CTRL+P  &  CTRL+Q
 
 Open a terminal session on a running container
 ```
-$ docker exec -i -t pamtrak06/ubuntu-utopic-mapcache2 /bin/bash
+$ docker exec -i -t pamtrak06/mapcache-ubuntu14.04 /bin/bash
 ```
 
 Get docker vm ip : 
