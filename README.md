@@ -10,21 +10,16 @@
 
 # How to use this image
 
-## Build mapcache
+## Build mapcache docker image
 
-This image is built under ubuntu.
+This image is built under ubuntu 14.04.
 ```
-docker build -t pamtrak06/mapcache:latest https://raw.githubusercontent.com/pamtrak06/mapcache-ubuntu14.04/master/Dockerfile
+docker build -t pamtrak06/mapcache-ubuntu14.04:latest https://raw.githubusercontent.com/pamtrak06/mapcache-ubuntu14.04/master/Dockerfile
 ```
 
 Embedded wmts example from Data source : Environnement Canada, (licence)[http://dd.meteo.gc.ca/doc/LICENCE_GENERAL.txt]
 
-## Run Mapcache
-
-Boot docker
-```
-$ boot2docker start
-```
+## Run mapcache docker container
 
 Run container
 ```
