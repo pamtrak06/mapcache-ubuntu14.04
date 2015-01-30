@@ -23,17 +23,18 @@ Embedded wmts example from Data source : Environnement Canada, (licence)[http://
 
 Run container
 ```
-$ docker run -i -t pamtrak06/mapcache-ubuntu14.04
+$ docker run -d pamtrak06/mapcache-ubuntu14.04
+```
+
+Open a terminal session on a running container
+```
+$ docker ps
+$ docker exec -d pamtrak06/mapcache-ubuntu14.04 /bin/bash
 ```
 
 Exit container without stop it
 ```
 CTRL+P  &  CTRL+Q
-```
-
-Open a terminal session on a running container
-```
-$ docker exec -i -t pamtrak06/mapcache-ubuntu14.04 /bin/bash
 ```
 
 Get docker vm ip : 
