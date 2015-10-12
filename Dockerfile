@@ -3,7 +3,7 @@ FROM pamtrak06/ubuntu14.04-apache2-python
 MAINTAINER pamtrak06 <pamtrak06@gmail.com>
 
 # Install mapcache compilation prerequisites
-RUN apt-get install -y software-properties-common g++ make cmake
+RUN apt-get update && apt-get install -y software-properties-common g++ make cmake
 
 # Install mapcache dependencies provided by Ubuntu repositories
 RUN apt-get install -y git \
