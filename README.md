@@ -37,21 +37,27 @@ Exit container without stop it
 CTRL+P  &  CTRL+Q
 ```
 
-Get docker vm ip : 
+Get docker vm ip frm windows or mac : 
 ```
-$ boot2Docker ip => 192.168.59.103
+$ docker-machine env default
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.101:2376"
+export DOCKER_CERT_PATH="/Users/jp/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell: 
+# eval "$(docker-machine env default)"
 ```
 
 GetCapabilities
 ```
-http://192.168.59.103/mapcache/wmts/?service=wmts&request=getCapabilities
+http://<host ip>/mapcache/wmts/?service=wmts&request=getCapabilities
 ```
 
 GetTile
 ```
-http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=0&time=2014-12-09T06:00:00Z
+http://<host ip>/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=0&time=2014-12-09T06:00:00Z
 
-http://192.168.59.103/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=1&time=2014-12-09T06:00:00Z
+http://<host ip>/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=1&time=2014-12-09T06:00:00Z
 ```
 
 ![ScreenShot](geometca0.png)![ScreenShot](geometca1.png)
