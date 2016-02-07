@@ -88,3 +88,7 @@ $ cd /etc/apache2/conf-available/
 $  ./mapcache.sh http://geo.weather.gc.ca/geomet/?lang=E geometca
 $ ls mapcache.xml
 ```
+
+Build a mapcache configuration from capabilities in javascript with help from http://pamtrak06.github.io/mapPower/build-mapcache.html
+
+Example of parsing a WMS capabilities from WMS data source, (licence : environnement Canada) to build a mapcache.xml configuration file for Mapcache (tile WMTS server).
