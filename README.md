@@ -25,7 +25,7 @@ Embedded wmts example from Data source : Environnement Canada, (licence)[http://
 
 Run container
 ```
-$ docker run -d -p 8686:80 -v <your local mapcache git clone path>/mapcache-ubuntu14.04/data/maps:/data -v <your local mapcache git clone path>/mapcache-ubuntu14.04/data/conf:/etc/apache2 pamtrak06/mapcache-ubuntu14.04
+$ docker run -d -t -p 8686:80 -v $(pwd)/mapcache-ubuntu14.04/data/maps:/data -v $(pwd)/mapcache-ubuntu14.04/data/conf:/etc/apache2 pamtrak06/mapcache-ubuntu14.04 bash
 ```
 
 Open a terminal session on a running container
