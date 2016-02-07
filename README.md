@@ -14,7 +14,9 @@
 
 This image is built under ubuntu 14.04.
 ```
-docker build -t pamtrak06/mapcache-ubuntu14.04:latest https://raw.githubusercontent.com/pamtrak06/mapcache-ubuntu14.04/master/Dockerfile
+$ git clone https://github.com/pamtrak06/mapcache-ubuntu14.04.git
+$ cd mapcache-ubuntu14.04
+$ docker build -t pamtrak06/mapcache-ubuntu14.04:latest .
 ```
 
 Embedded wmts example from Data source : Environnement Canada, (licence)[http://dd.meteo.gc.ca/doc/LICENCE_GENERAL.txt]
