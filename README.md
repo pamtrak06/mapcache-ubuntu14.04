@@ -15,7 +15,7 @@
 This image is built under ubuntu 14.04.
 ```
 $ git clone https://github.com/pamtrak06/mapcache-ubuntu14.04.git
-$ cd mapcache-ubuntu14.04
+$ cd mapcache-ubuntu14.04; mkdir data; mkdir data/maps; mkdir data/conf;  
 $ docker build -t pamtrak06/mapcache-ubuntu14.04:latest .
 ```
 
@@ -25,7 +25,7 @@ Embedded wmts example from Data source : Environnement Canada, (licence)[http://
 
 Run container
 ```
-$ docker run -d pamtrak06/mapcache-ubuntu14.04
+$ docker run -d -p 8686:80 -v <your local mapcache git clone path>/mapcache-ubuntu14.04/data/maps:/data -v <your local mapcache git clone path>/mapcache-ubuntu14.04/data/conf:/etc/apache2 pamtrak06/mapcache-ubuntu14.04
 ```
 
 Open a terminal session on a running container
