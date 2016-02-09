@@ -112,5 +112,6 @@ Test http responses :
 $ ps -ef | grep apache
 $ curl localhost
 $ curl localhost/mapcache
-$ curl localhost/mapcache
+$ curl localhost/mapcache/?service=wms&request=getCapabilities
+$ curl localhost/mapcache/wmts/?service=wmts&request=getCapabilities
 ```
