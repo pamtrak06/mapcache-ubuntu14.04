@@ -51,16 +51,25 @@ export DOCKER_MACHINE_NAME="default"
 # eval "$(docker-machine env default)"
 ```
 
-GetCapabilities
+WMS GetCapabilities
+```
+http://<host ip>/mapcache/?service=wms&request=getCapabilities
+```
+
+
+WMTS GetCapabilities
 ```
 http://<host ip>/mapcache/wmts/?service=wmts&request=getCapabilities
 ```
 
 GetTile
-```
-http://<host ip>/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=0&time=2014-12-09T06:00:00Z
+Take care about replacing time with syntaxe time=<actual year>-<actual month>-<actual day>T<hour>:00:00Z
+Tips : Read available time in capabilities
 
-http://<host ip>/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=1&time=2014-12-09T06:00:00Z
+```
+http://<host ip>/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=0&time=[time]
+
+http://<host ip>/mapcache/wmts/?service=WMTS&request=GetTile&format=image/png&width=1600&height=600&srs=EPSG:4326&layer=GDPS.ETA_P0_PRESSURE&TileMatrixSet=WGS84&TileMatrix=0&TileRow=0&TileCol=1&time=[time]
 ```
 
 ![ScreenShot](geometca0.png)![ScreenShot](geometca1.png)
@@ -89,9 +98,17 @@ Example :
 ```
 $ cd /etc/apache2/conf-available/
 $  ./mapcache.sh http://geo.weather.gc.ca/geomet/?lang=E geometca
-$ ls mapcache.xml
+$ ls -la mapcache.xml
 ```
 
 Build a mapcache configuration from capabilities in javascript with help from http://pamtrak06.github.io/mapPower/build-mapcache.html
 
 Example of parsing a WMS capabilities from WMS data source, (licence : environnement Canada) to build a mapcache.xml configuration file for Mapcache (tile WMTS server).
+
+Test http responses :
+```
+$ ps -ef | grep apache
+$ curl localhost
+$ curl localhost/mapcache
+$ curl localhost/mapcache
+```
