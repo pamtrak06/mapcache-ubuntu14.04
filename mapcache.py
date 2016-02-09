@@ -125,8 +125,8 @@ def main(argv):
             mapcache += u"  &lt;tileset name=\"" + tileset + u"\"&gt;\n";
             mapcache += u"    &lt;source&gt;" + source + u"&lt;/source&gt;\n";
             mapcache += u"    &lt;dimensions&gt;\n";
-            mapcache += u"      &lt;dimension type=\"regex\" name=\"elevation\" default=\"-1\"&gt;.*&lt;/dimension&gt;\n";
-            mapcache += u"      &lt;dimension type=\"regex\" name=\"time\" default=\"" + layer.defaulttimeposition + u"\"&gt;.*&lt;/dimension&gt;\n";
+            mapcache += u"      &lt;dimension type=\"regex\" name=\"elevation\" default=\"-1\"&gt;&lt;regex&gt;.*&lt;/regex&gt;&lt;/dimension&gt;\n";
+            mapcache += u"      &lt;dimension type=\"regex\" name=\"time\" default=\"" + layer.defaulttimeposition + u"\"&gt;&lt;regex&gt;.*&lt;/regex&gt;&lt;/dimension&gt;\n";
             mapcache += u"    &lt;/dimensions&gt;\n";
             mapcache += u"    &lt;cache&gt;disk&lt;/cache&gt;\n";
             mapcache += u"    &lt;format&gt;PNG&lt;/format&gt;\n";
@@ -154,9 +154,9 @@ def main(argv):
             tileset = layer.name + u"_" + sname;
             source = u"SOURCE_" + layer.name + u"_" + sname;
             mapcache += u"    &lt;forwarding_rule name=\"RULE" + tileset + u"\"&gt;\n";
-            mapcache += u"      &lt;param name=\"SERVICE\" type=\"values\"&gt;WMS&lt;/param&gt;\n";
-            mapcache += u"      &lt;param name=\"LAYERS\" type=\"values\"&gt;" + layer.name + u"&lt;/param&gt;\n";
-            mapcache += u"      &lt;param name=\"STYLES\" type=\"values\"&gt;" + sname + u"&lt;/param&gt;\n";
+            mapcache += u"      &lt;param name=\"SERVICE\" type=\"values\"&gt;&lt;value&gt;WMS&lt;/value&gt;&lt;/param&gt;\n";
+            mapcache += u"      &lt;param name=\"LAYERS\" type=\"values\"&gt;&lt;value&gt;" + layer.name + u"&lt;/value&gt;&lt;/param&gt;\n";
+            mapcache += u"      &lt;param name=\"STYLES\" type=\"values\"&gt;&lt;value&gt;" + sname + u"&lt;/value&gt;&lt;/param&gt;\n";
             mapcache += u"      &lt;http&gt;\n";
             mapcache += u"        &lt;url&gt;" + urlRequestCapa + concat + u"LAYERS=" + tileset + u"&lt;/url&gt;\n";
             mapcache += u"      &lt;/http&gt;\n";
