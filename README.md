@@ -107,7 +107,12 @@ Build a mapcache configuration from capabilities in javascript with help from ht
 
 Example of parsing a WMS capabilities from WMS data source, (licence : environnement Canada) to build a mapcache.xml configuration file for Mapcache (tile WMTS server).
 
-Test http responses :
+Connect to container :
+```
+$ docker exec -it $(docker ps | grep pamtrak06/mapcache-ubuntu14.04 | cut -d ' ' -f1 ) bash
+```
+
+Test http responses in the container :
 ```
 $ ps -ef | grep apache
 $ curl localhost
