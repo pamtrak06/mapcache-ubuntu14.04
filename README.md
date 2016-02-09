@@ -63,7 +63,9 @@ http://<host ip>/mapcache/wmts/?service=wmts&request=getCapabilities
 ```
 
 GetTile
-Take care about replacing time with syntaxe time=<actual year>-<actual month>-<actual day>T<hour>:00:00Z
+
+Take care about replacing time with syntaxe time=[actual year]-[actual month]-[actual day]T[hour]:00:00Z
+
 Tips : Read available time in capabilities
 
 ```
