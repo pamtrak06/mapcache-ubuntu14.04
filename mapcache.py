@@ -1,5 +1,15 @@
 #!/usr/bin/python
 
+# ---------------------------------------------------------------------------
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+# ---------------------------------------------------------------------------
+
 from __future__ import unicode_literals
 import sys, getopt, logging
 from owslib.wms import WebMapService
@@ -125,8 +135,13 @@ def main(argv):
             mapcache += u"  &lt;tileset name=\"" + tileset + u"\"&gt;\n";
             mapcache += u"    &lt;source&gt;" + source + u"&lt;/source&gt;\n";
             mapcache += u"    &lt;dimensions&gt;\n";
+<<<<<<< HEAD
             mapcache += u"      &lt;dimension type=\"regex\" name=\"elevation\" default=\"-1\"&gt;&lt;regex&gt;.*&lt;/regex&gt;&lt;/dimension&gt;\n";
             mapcache += u"      &lt;dimension type=\"regex\" name=\"time\" default=\"" + layer.defaulttimeposition + u"\"&gt;&lt;regex&gt;.*&lt;/regex&gt;&lt;/dimension&gt;\n";
+=======
+            #mapcache += u"      &lt;dimension type=\"regex\" name=\"elevation\" default=\"-1\"&gt;.*&lt;/dimension&gt;\n";
+            mapcache += u"      &lt;dimension type=\"time\" name=\"time\" default=\"" + layer.defaulttimeposition + u"\"&gt;.*&lt;/dimension&gt;\n";
+>>>>>>> 39c1bdf0162f28ecbf8da1d721861cc4ec435818
             mapcache += u"    &lt;/dimensions&gt;\n";
             mapcache += u"    &lt;cache&gt;disk&lt;/cache&gt;\n";
             mapcache += u"    &lt;format&gt;PNG&lt;/format&gt;\n";

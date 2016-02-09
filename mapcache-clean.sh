@@ -4,5 +4,5 @@ cache=$1
 
 rm -rf /tmp/$cache
 mkdir /tmp/$cache
-chmod 777 /tmp/$cache
+chmod 755 /tmp/$cache
 
