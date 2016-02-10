@@ -45,14 +45,15 @@ COPY mapcache.py /etc/apache2/conf-available/
 COPY mapcache-run.sh /etc/apache2/conf-available/
 
 # Build mapcache.xml sample
-RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache \
-    && mv mapcache.xml /etc/apache2/conf-available/
+#RUN python /etc/apache2/conf-available/mapcache.py --wms http://geo.weather.gc.ca/geomet/?lang=E --prj mapcache \
+#    && mv mapcache.xml /etc/apache2/conf-available/
+RUN bash -c "cd /etc/apache2/conf-available/ && ./mapcache-run.sh http://geo.weather.gc.ca/geomet/?lang=E mapcache"
 
 # Enable mapcache module in Apache
 RUN a2enmod mapcache
 
 # Create temp directory for mapcache tiles
-RUN mkdir /tmp/mapcache
+RUN if [ ! -d /tmp/mapcache ]; then mkdir /tmp/mapcache; fi
 RUN chmod 755 /tmp/mapcache
 
 # Volumes

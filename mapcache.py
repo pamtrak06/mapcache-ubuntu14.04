@@ -135,13 +135,8 @@ def main(argv):
             mapcache += u"  &lt;tileset name=\"" + tileset + u"\"&gt;\n";
             mapcache += u"    &lt;source&gt;" + source + u"&lt;/source&gt;\n";
             mapcache += u"    &lt;dimensions&gt;\n";
-<<<<<<< HEAD
             mapcache += u"      &lt;dimension type=\"regex\" name=\"elevation\" default=\"-1\"&gt;&lt;regex&gt;.*&lt;/regex&gt;&lt;/dimension&gt;\n";
             mapcache += u"      &lt;dimension type=\"regex\" name=\"time\" default=\"" + layer.defaulttimeposition + u"\"&gt;&lt;regex&gt;.*&lt;/regex&gt;&lt;/dimension&gt;\n";
-=======
-            #mapcache += u"      &lt;dimension type=\"regex\" name=\"elevation\" default=\"-1\"&gt;.*&lt;/dimension&gt;\n";
-            mapcache += u"      &lt;dimension type=\"time\" name=\"time\" default=\"" + layer.defaulttimeposition + u"\"&gt;.*&lt;/dimension&gt;\n";
->>>>>>> 39c1bdf0162f28ecbf8da1d721861cc4ec435818
             mapcache += u"    &lt;/dimensions&gt;\n";
             mapcache += u"    &lt;cache&gt;disk&lt;/cache&gt;\n";
             mapcache += u"    &lt;format&gt;PNG&lt;/format&gt;\n";
